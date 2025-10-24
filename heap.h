@@ -17,18 +17,21 @@ struct MinHeap {
     void push(int idx, int weightArr[]) {
         // TODO: insert index at end of heap, restore order using upheap()
         size++;
-        weightArr[size-1] = idx;
-        //data[size-1] = idx;
-        upheap(size, weightArr);
+        data[size-1] = idx;
+        upheap(size-1, weightArr);
     }
 
     int pop(int weightArr[]) {
         // TODO: remove and return smallest index
         // Replace root with last element, then call downheap()
+        if (size==0) {
+            cout << "Heap is empty" << endl;
+            return -1;
+        }
         int root = data[0];
-        data[0] = weightArr[size-1];
+        data[0] = data[size-1];
         size--;
-        downheap(size, weightArr);
+        downheap(0, weightArr);
         return root;
     }
 
